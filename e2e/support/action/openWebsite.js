@@ -11,8 +11,6 @@ module.exports = (type, page, done) => {
   */
   const url = (type === 'url') ? page : browser.options.baseUrl + page;
 
-  console.log(url);
-
   browser.url(url);
 
   done();
