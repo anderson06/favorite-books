@@ -41,9 +41,12 @@ class App extends Component {
     return (
       <li
         key={volume.id}
-        className="fb-volume"
+        className="fb-volume collection-item avatar"
       >
-        {volume.volumeInfo.title}
+        <img src={volume.volumeInfo.imageLinks.thumbnail} className="circle" />
+        <span className="title">{volume.volumeInfo.title}</span>
+        <p className="fb-truncate">{volume.volumeInfo.description}</p>
+        <a href="#!" className="secondary-content"><i className="material-icons">grade</i></a>
       </li>
     );
   }
@@ -54,33 +57,39 @@ class App extends Component {
       return null;
     }
     const listVolumes = volumes.map(this.renderVolume);
-    return <ul className="fb-volumes">{listVolumes}</ul>;
+    return <ul className="fb-volumes collection">{listVolumes}</ul>;
   }
 
   render() {
     return (
-      <div className="fb">
-        <div className="fb-header">
-          <h2 className="fb-title">Welcome to Favorite Books</h2>
+      <div className="fb container">
+        <div className="fb-header section">
+          <h1 className="fb-title">Favorite Books</h1>
         </div>
-        <form
-          id="search-form"
-          className="fb-search"
-          onSubmit={this.handleSubmit}
-        >
-          <input
-            onChange={this.handleChange}
-            className="fb-search-input"
-            placeholder="Book Name"
-            required="required"
-            autoComplete="off"
-            autoFocus={true}
-            type="search"
-            name="search"
-            id="search"
-          />
-        </form>
-        {this.renderVolumes()}
+
+        <div className="section">
+          <form
+            id="search-form"
+            className="fb-search"
+            onSubmit={this.handleSubmit}
+          >
+            <input
+              onChange={this.handleChange}
+              className="fb-search-input"
+              placeholder="Book Name"
+              required="required"
+              autoComplete="off"
+              autoFocus={true}
+              type="search"
+              name="search"
+              id="search"
+            />
+          </form>
+        </div>
+
+        <div className="section">
+          {this.renderVolumes()}
+        </div>
       </div>
     );
   }
