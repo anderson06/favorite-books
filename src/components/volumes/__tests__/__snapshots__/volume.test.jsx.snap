@@ -1,5 +1,41 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`renders a book placeholder image when no thumbnail is passed 1`] = `
+<li
+  className="fb-volume collection-item avatar"
+>
+  <div
+    className="circle valign-wrapper center-align teal lighten-2"
+  >
+    <i
+      className="material-icons fb-thumbnail-icon"
+    >
+      library_books
+    </i>
+  </div>
+  <span
+    className="title truncate"
+  >
+    Fake title
+  </span>
+  <p
+    className="fb-truncate"
+  >
+    Fake description
+  </p>
+  <a
+    className="secondary-content"
+    href="#!"
+  >
+    <i
+      className="material-icons"
+    >
+      grade
+    </i>
+  </a>
+</li>
+`;
+
 exports[`renders correctly 1`] = `
 <li
   className="fb-volume collection-item avatar"
@@ -9,7 +45,7 @@ exports[`renders correctly 1`] = `
     src="fake-thumbnail.png"
   />
   <span
-    className="title"
+    className="title truncate"
   >
     Fake title
   </span>

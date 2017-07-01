@@ -13,3 +13,14 @@ it('renders correctly', () => {
   ).toJSON();
   expect(tree).toMatchSnapshot();
 });
+
+it('renders a book placeholder image when no thumbnail is passed', () => {
+  const tree = renderer.create(
+    <Volume
+      id="000"
+      title="Fake title"
+      description="Fake description"
+    />
+  ).toJSON();
+  expect(tree).toMatchSnapshot();
+});

@@ -47,7 +47,7 @@ class App extends Component {
     const listVolumes = volumes.map(volume => (
       <Volume
         id={volume.id}
-        thumbnail={volume.volumeInfo.imageLinks.thumbnail}
+        thumbnail={volume.volumeInfo.imageLinks ? volume.volumeInfo.imageLinks.thumbnail : null}
         title={volume.volumeInfo.title}
         description={volume.volumeInfo.description}
       />
