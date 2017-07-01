@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import Volume from './components/volumes/volume.jsx';
 import './App.scss';
 
 class App extends Component {
@@ -33,22 +34,9 @@ class App extends Component {
         this.setState({volumes: response.data.items});
       })
       .catch((error) => {
-        this.setstate({volumes: []});
+        console.log(error);
+        this.setState({volumes: []});
       });
-  }
-
-  renderVolume(volume) {
-    return (
-      <li
-        key={volume.id}
-        className="fb-volume collection-item avatar"
-      >
-        <img src={volume.volumeInfo.imageLinks.thumbnail} className="circle" />
-        <span className="title">{volume.volumeInfo.title}</span>
-        <p className="fb-truncate">{volume.volumeInfo.description}</p>
-        <a href="#!" className="secondary-content"><i className="material-icons">grade</i></a>
-      </li>
-    );
   }
 
   renderVolumes() {
@@ -56,7 +44,14 @@ class App extends Component {
     if (volumes.length === 0) {
       return null;
     }
-    const listVolumes = volumes.map(this.renderVolume);
+    const listVolumes = volumes.map(volume => (
+      <Volume
+        id={volume.id}
+        thumbnail={volume.volumeInfo.imageLinks.thumbnail}
+        title={volume.volumeInfo.title}
+        description={volume.volumeInfo.description}
+      />
+    ));
     return <ul className="fb-volumes collection">{listVolumes}</ul>;
   }
 

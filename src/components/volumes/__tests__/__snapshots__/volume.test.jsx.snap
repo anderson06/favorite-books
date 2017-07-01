@@ -1,0 +1,32 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly 1`] = `
+<li
+  className="fb-volume collection-item avatar"
+>
+  <img
+    className="circle"
+    src="fake-thumbnail.png"
+  />
+  <span
+    className="title"
+  >
+    Fake title
+  </span>
+  <p
+    className="fb-truncate"
+  >
+    Fake description
+  </p>
+  <a
+    className="secondary-content"
+    href="#!"
+  >
+    <i
+      className="material-icons"
+    >
+      grade
+    </i>
+  </a>
+</li>
+`;

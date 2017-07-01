@@ -48,6 +48,7 @@
     "postcss-flexbugs-fixes": "3.0.0",
     "postcss-loader": "2.0.6",
     "promise": "7.1.1",
+    "prop-types": "^15.5.10",
     "react": "^15.6.1",
     "react-dev-utils": "^3.0.1",
     "react-dom": "^15.6.1",
@@ -72,14 +73,20 @@
     "http-server": "~0.10.0",
     "jest": "^20.0.4",
     "node-sass": "^4.5.3",
+    "react-test-renderer": "^15.6.1",
     "regenerator-runtime": "^0.10.5",
     "sass-loader": "^6.0.6",
     "webpack": "^2.6.1",
     "webpack-dev-server": "^2.5.0"
   },
   "jest": {
-    "moduleFileExtensions": ["js", "jsx"],
-    "moduleDirectories": ["node_modules"],
+    "moduleFileExtensions": [
+      "js",
+      "jsx"
+    ],
+    "moduleDirectories": [
+      "node_modules"
+    ],
     "moduleNameMapper": {
       "\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "<rootDir>/__mocks__/fileMock.js",
       "\\.(css|less|scss)$": "<rootDir>/__mocks__/styleMock.js"
