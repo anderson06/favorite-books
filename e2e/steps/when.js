@@ -1,3 +1,4 @@
+import submitForm from '../support/action/submitForm';
 import clickElement from '../support/action/clickElement';
 import setInputField from '../support/action/setInputField';
 
@@ -8,7 +9,7 @@ module.exports = function when() {
   );
 
   this.When(
-    /^I click on the search button$/,
-    (done) => clickElement('click', 'selector', '#search-button', done)
+    /^I submit the search form$/,
+    (done) => submitForm('#search-form', done)
   );
 };

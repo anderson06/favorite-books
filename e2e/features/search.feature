@@ -5,6 +5,6 @@ Feature: Books Search
 
   Scenario: Search with key word and see results
     Given I open the main page
-    When  I set "A Song of Ice and Fire" to the search field
-    And   I click on the search button
-    Then  I expect to see some results about the book "A Song of Ice and Fire"
+    When  I set "A Game of Thrones" to the search field
+    And   I submit the search form
+    Then  I expect to see some results about the book "A Game of Thrones"
