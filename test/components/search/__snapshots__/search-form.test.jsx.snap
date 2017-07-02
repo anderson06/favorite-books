@@ -1,0 +1,21 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Volume /> renders correctly 1`] = `
+<form
+  className="fb-search"
+  id="search-form"
+  onSubmit={undefined}
+>
+  <input
+    autoComplete="off"
+    autoFocus={true}
+    className="fb-search-input"
+    id="search"
+    name="search"
+    onChange={undefined}
+    placeholder="Book Name"
+    required="required"
+    type="search"
+  />
+</form>
+`;

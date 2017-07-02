@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import Volumes from './components/volumes/volumes.jsx';
+import SearchForm from './components/search/search-form.jsx';
 import './App.scss';
 
 class App extends Component {
@@ -71,23 +72,10 @@ class App extends Component {
         </div>
 
         <div className="section">
-          <form
-            id="search-form"
-            className="fb-search"
+          <SearchForm
+            onChange={this.handleChange}
             onSubmit={this.handleSubmit}
-          >
-            <input
-              onChange={this.handleChange}
-              className="fb-search-input"
-              placeholder="Book Name"
-              required="required"
-              autoComplete="off"
-              autoFocus={true}
-              type="search"
-              name="search"
-              id="search"
-            />
-          </form>
+          />
         </div>
 
         <div className="section">

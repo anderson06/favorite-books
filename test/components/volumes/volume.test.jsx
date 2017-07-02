@@ -1,5 +1,5 @@
 import React from 'react';
-import Volume from '../volume';
+import Volume from '../../../src/components/volumes/volume';
 import renderer from 'react-test-renderer';
 
 describe('<Volume />', () => {

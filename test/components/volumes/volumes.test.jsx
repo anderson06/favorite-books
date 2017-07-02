@@ -1,8 +1,8 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import Volumes from '../volumes.jsx';
-import Volume from '../volume.jsx';
-import { volume } from './builders/volume';
+import Volumes from '../../../src/components/volumes/volumes.jsx';
+import Volume from '../../../src/components/volumes/volume.jsx';
+import { volume } from '../../builders/volume';
 
 describe('<Volumes />', () => {
   it('should render a list of <Volume /> components', () => {
