@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import Volume from './components/volumes/volume.jsx';
+import Volumes from './components/volumes/volumes.jsx';
 import './App.scss';
 
 class App extends Component {
   constructor() {
     super();
     this.state = {
+      items: [],
       volumes: [],
       searchQuery: ''
     };
@@ -31,31 +32,38 @@ class App extends Component {
         }
       })
       .then((response) => {
-        this.setState({volumes: response.data.items});
+        this.setState({
+          items: response.data.items,
+          volumes: this.parseVolumes(response.data.items)
+        });
       })
       .catch((error) => {
         console.log(error);
-        this.setState({volumes: []});
+        this.setState({
+          items: [],
+          volumes: []
+        });
       });
   }
 
-  renderVolumes() {
-    const {volumes} = this.state;
-    if (volumes.length === 0) {
-      return null;
-    }
-    const listVolumes = volumes.map(volume => (
-      <Volume
-        id={volume.id}
-        thumbnail={volume.volumeInfo.imageLinks ? volume.volumeInfo.imageLinks.thumbnail : null}
-        title={volume.volumeInfo.title}
-        description={volume.volumeInfo.description}
-      />
-    ));
-    return <ul className="fb-volumes collection">{listVolumes}</ul>;
+  parseVolumes(items) {
+    const volumes = items.map(item => {
+      let thumbnail = null;
+      if (item.volumeInfo.imageLinks) {
+        thumbnail = item.volumeInfo.imageLinks.thumbnail;
+      }
+      return {
+        thumbnail,
+        id: item.id,
+        title: item.volumeInfo.title,
+        description: item.volumeInfo.description
+      }
+    });
+    return volumes;
   }
 
   render() {
+    const { volumes } = this.state;
     return (
       <div className="fb container">
         <div className="fb-header section">
@@ -83,7 +91,7 @@ class App extends Component {
         </div>
 
         <div className="section">
-          {this.renderVolumes()}
+          <Volumes volumes={volumes} />
         </div>
       </div>
     );

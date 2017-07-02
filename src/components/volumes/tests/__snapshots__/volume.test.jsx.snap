@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`renders a book placeholder image when no thumbnail is passed 1`] = `
+exports[`<Volume /> renders a book placeholder image when no thumbnail is passed 1`] = `
 <li
   className="fb-volume collection-item avatar"
 >
@@ -36,7 +36,7 @@ exports[`renders a book placeholder image when no thumbnail is passed 1`] = `
 </li>
 `;
 
-exports[`renders correctly 1`] = `
+exports[`<Volume /> renders correctly 1`] = `
 <li
   className="fb-volume collection-item avatar"
 >
