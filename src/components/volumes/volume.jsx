@@ -2,18 +2,17 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import './Volume.scss';
 
-const Volume = ({id, thumbnail, title, description}) => {
+const Volume = ({ thumbnail, title, description }) => {
   let image = (
     <div className="circle valign-wrapper center-align teal lighten-2">
       <i className="material-icons fb-thumbnail-icon">library_books</i>
     </div>
   );
   if (thumbnail) {
-    image = <img src={thumbnail} className="circle" />
+    image = <img src={thumbnail} alt="book cover" className="circle" />;
   }
   return (
     <li
-      key={id}
       className="fb-volume collection-item avatar"
     >
       {image}
@@ -27,10 +26,15 @@ const Volume = ({id, thumbnail, title, description}) => {
 };
 
 Volume.propTypes = {
-  id: PropTypes.string,
-  thumbnail: PropTypes.string,
-  name: PropTypes.string,
   description: PropTypes.string,
+  thumbnail: PropTypes.string,
+  title: PropTypes.string,
+};
+
+Volume.defaultProps = {
+  description: '',
+  thumbnail: '',
+  title: '',
 };
 
 export default Volume;

@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Volume from './volume.jsx';
+import Volume from './volume';
 
-const Volumes = ({volumes}) => {
+const Volumes = ({ volumes }) => {
   if (volumes.length === 0) {
     return null;
   }
@@ -17,7 +17,11 @@ const Volumes = ({volumes}) => {
 };
 
 Volumes.propTypes = {
-  volumes: PropTypes.array,
+  volumes: PropTypes.arrayOf(PropTypes.shape(Volume.propTypes)),
+};
+
+Volumes.defaultProps = {
+  volumes: [],
 };
 
 export default Volumes;

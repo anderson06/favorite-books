@@ -10,10 +10,13 @@ const HtmlWebpackPluginConfig = new HtmlWebpackPlugin({
 
 const config = {
   context: __dirname,
-  entry: ['./src/index.js'],
+  entry: ['./src/index.jsx'],
   output: {
     filename: 'main.js',
     path: path.resolve('public')
+  },
+  resolve: {
+    extensions: ['.js', '.jsx']
   },
   module: {
     rules: [

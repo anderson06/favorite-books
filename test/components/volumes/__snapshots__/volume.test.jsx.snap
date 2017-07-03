@@ -41,6 +41,7 @@ exports[`<Volume /> renders correctly 1`] = `
   className="fb-volume collection-item avatar"
 >
   <img
+    alt="book cover"
     className="circle"
     src="fake-thumbnail.png"
   />

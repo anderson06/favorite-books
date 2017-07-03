@@ -1,16 +1,33 @@
 import React, { Component } from 'react';
-import axios from 'axios';
-import Volumes from './components/volumes/volumes.jsx';
-import SearchForm from './components/search/search-form.jsx';
+import Volumes from './components/volumes/volumes';
+import SearchForm from './components/search/search-form';
+import getVolumes from './services/books';
 import './App.scss';
 
 class App extends Component {
+
+  static parseVolumes(items) {
+    const volumes = items.map((item) => {
+      let thumbnail = null;
+      if (item.volumeInfo.imageLinks) {
+        thumbnail = item.volumeInfo.imageLinks.thumbnail;
+      }
+      return {
+        thumbnail,
+        id: item.id,
+        title: item.volumeInfo.title,
+        description: item.volumeInfo.description,
+      };
+    });
+    return volumes;
+  }
+
   constructor() {
     super();
     this.state = {
       items: [],
       volumes: [],
-      searchQuery: ''
+      searchQuery: '',
     };
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleChange = this.handleChange.bind(this);
@@ -22,45 +39,27 @@ class App extends Component {
   }
 
   handleChange(event) {
-    this.setState({searchQuery: event.target.value});
+    this.setState({ searchQuery: event.target.value });
   }
 
   loadBooks() {
-    const url = 'https://www.googleapis.com/books/v1/volumes';
-    axios.get(url, {
-        params: {
-          q: this.state.searchQuery
-        }
-      })
+    const { searchQuery } = this.state;
+    getVolumes(searchQuery)
       .then((response) => {
         this.setState({
           items: response.data.items,
-          volumes: this.parseVolumes(response.data.items)
+          volumes: App.parseVolumes(response.data.items),
         });
       })
       .catch((error) => {
-        console.log(error);
+        /* eslint-disable no-console */
+        console.error(error);
+        /* eslint-enable no-console */
         this.setState({
           items: [],
-          volumes: []
+          volumes: [],
         });
       });
-  }
-
-  parseVolumes(items) {
-    const volumes = items.map(item => {
-      let thumbnail = null;
-      if (item.volumeInfo.imageLinks) {
-        thumbnail = item.volumeInfo.imageLinks.thumbnail;
-      }
-      return {
-        thumbnail,
-        id: item.id,
-        title: item.volumeInfo.title,
-        description: item.volumeInfo.description
-      }
-    });
-    return volumes;
   }
 
   render() {
