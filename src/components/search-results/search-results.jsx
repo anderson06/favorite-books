@@ -8,7 +8,7 @@ const SearchResults = (props) => {
     return null;
   }
   return (
-    <div className={`fb-page-${props.page + 1}`}>
+    <div className={`fb-page-${props.currentPage + 1}`}>
       <Volumes {...props} />
       <Pagination {...props} />
     </div>
@@ -17,12 +17,12 @@ const SearchResults = (props) => {
 
 SearchResults.propTypes = {
   volumes: arrayOf(shape(Volume.propTypes)),
-  page: number,
+  currentPage: number,
 };
 
 SearchResults.defaultProps = {
   volumes: [],
-  page: 0,
+  currentPage: 0,
 };
 
 export default SearchResults;

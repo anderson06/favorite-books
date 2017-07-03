@@ -29,7 +29,7 @@ describe('<SearchResults />', () => {
     });
 
     it('should have a className showing the current page', () => {
-      wrapper = shallow(<SearchResults volumes={volumes} page={2} />);
+      wrapper = shallow(<SearchResults volumes={volumes} currentPage={2} />);
       expect(wrapper.hasClass('fb-page-3')).toBe(true);
     });
   });

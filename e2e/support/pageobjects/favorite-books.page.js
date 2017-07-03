@@ -19,6 +19,10 @@ class FavoriteBooks {
     return $('#next-page');
   }
 
+  get previousPage() {
+    return $('#previous-page');
+  }
+
   page(index) {
     return $(`.fb-page-${index}`);
   }

@@ -26,6 +26,7 @@ class App extends Component {
     super();
     this.state = {
       page: 0,
+      totalPages: 0,
       items: [],
       volumes: [],
       searchQuery: '',
@@ -33,6 +34,7 @@ class App extends Component {
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleChange = this.handleChange.bind(this);
     this.handleNextPageClick = this.handleNextPageClick.bind(this);
+    this.handlePreviousPageClick = this.handlePreviousPageClick.bind(this);
   }
 
   handleSubmit(event) {
@@ -47,6 +49,13 @@ class App extends Component {
     this.loadBooks(page);
   }
 
+  handlePreviousPageClick(event) {
+    event.preventDefault();
+    let page = this.state.page;
+    page -= 1;
+    this.loadBooks(page);
+  }
+
   handleChange(event) {
     this.setState({ searchQuery: event.target.value });
   }
@@ -55,8 +64,10 @@ class App extends Component {
     const { searchQuery } = this.state;
     getVolumes(searchQuery, page)
       .then((response) => {
+        console.log(response.data.totalItems, Math.floor(response.data.totalItems / 10));
         this.setState({
           page,
+          totalPages: Math.floor(response.data.totalItems / 10),
           items: response.data.items,
           volumes: App.parseVolumes(response.data.items),
         });
@@ -67,6 +78,7 @@ class App extends Component {
         /* eslint-enable no-console */
         this.setState({
           page,
+          totalPages: 0,
           items: [],
           volumes: [],
         });
@@ -74,7 +86,7 @@ class App extends Component {
   }
 
   render() {
-    const { volumes, page } = this.state;
+    const { volumes, page, totalPages } = this.state;
     return (
       <div className="fb container">
         <div className="fb-header section">
@@ -90,9 +102,11 @@ class App extends Component {
 
         <div className="section">
           <SearchResults
-            page={page}
+            currentPage={page}
+            totalPages={totalPages}
             volumes={volumes}
             onNextPageClick={this.handleNextPageClick}
+            onPreviousPageClick={this.handlePreviousPageClick}
           />
         </div>
       </div>

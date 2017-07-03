@@ -15,4 +15,9 @@ module.exports = function when() {
     /^I click the next page button$/,
     () => FavoriteBooks.nextPage.click()
   );
+
+  this.When(
+    /^I click the previous page button$/,
+    () => FavoriteBooks.previousPage.click()
+  );
 };
