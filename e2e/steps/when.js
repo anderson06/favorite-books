@@ -1,15 +1,18 @@
-import submitForm from '../support/action/submitForm';
-import clickElement from '../support/action/clickElement';
-import setInputField from '../support/action/setInputField';
+import FavoriteBooks from '../pageobjects/favorite-books.page';
 
 module.exports = function when() {
   this.When(
     /^I set "([^"]*)?" to the search field$/,
-    (bookName, done) => setInputField('set', bookName, "#search", done)
+    (bookName) => FavoriteBooks.searchInput.setValue(bookName)
   );
 
   this.When(
     /^I submit the search form$/,
-    (done) => submitForm('#search-form', done)
+    () => FavoriteBooks.searchForm.submitForm()
+  );
+
+  this.When(
+    /^I click the next page button$/,
+    () => FavoriteBooks.nextPage.click()
   );
 };

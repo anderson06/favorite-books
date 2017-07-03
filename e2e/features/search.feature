@@ -1,3 +1,4 @@
+@search
 Feature: Books Search
   As a user
   In order to serch for books
