@@ -1,5 +1,3 @@
-import checkContainsText from '../support/check/checkContainsText';
-import waitForVisible from '../support/action/waitForVisible';
 import FavoriteBooks from '../pageobjects/favorite-books.page';
 
 module.exports = function then() {

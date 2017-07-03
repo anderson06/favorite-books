@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Volumes from './components/volumes/volumes';
+import { SearchResults } from './components/search-results';
 import SearchForm from './components/search/search-form';
 import getVolumes from './services/books';
 import './App.scss';
@@ -25,12 +25,14 @@ class App extends Component {
   constructor() {
     super();
     this.state = {
+      page: 0,
       items: [],
       volumes: [],
       searchQuery: '',
     };
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleChange = this.handleChange.bind(this);
+    this.handleNextPageClick = this.handleNextPageClick.bind(this);
   }
 
   handleSubmit(event) {
@@ -38,15 +40,23 @@ class App extends Component {
     this.loadBooks();
   }
 
+  handleNextPageClick(event) {
+    event.preventDefault();
+    let page = this.state.page;
+    page += 1;
+    this.loadBooks(page);
+  }
+
   handleChange(event) {
     this.setState({ searchQuery: event.target.value });
   }
 
-  loadBooks() {
+  loadBooks(page = 0) {
     const { searchQuery } = this.state;
-    getVolumes(searchQuery)
+    getVolumes(searchQuery, page)
       .then((response) => {
         this.setState({
+          page,
           items: response.data.items,
           volumes: App.parseVolumes(response.data.items),
         });
@@ -56,6 +66,7 @@ class App extends Component {
         console.error(error);
         /* eslint-enable no-console */
         this.setState({
+          page,
           items: [],
           volumes: [],
         });
@@ -63,7 +74,7 @@ class App extends Component {
   }
 
   render() {
-    const { volumes } = this.state;
+    const { volumes, page } = this.state;
     return (
       <div className="fb container">
         <div className="fb-header section">
@@ -78,7 +89,11 @@ class App extends Component {
         </div>
 
         <div className="section">
-          <Volumes volumes={volumes} />
+          <SearchResults
+            page={page}
+            volumes={volumes}
+            onNextPageClick={this.handleNextPageClick}
+          />
         </div>
       </div>
     );

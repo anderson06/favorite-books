@@ -15,6 +15,14 @@ class FavoriteBooks {
     return $('.fb-volumes');
   }
 
+  get nextPage() {
+    return $('#next-page');
+  }
+
+  page(index) {
+    return $(`.fb-page-${index}`);
+  }
+
   open() {
     browser.url('/');
   }
