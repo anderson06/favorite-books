@@ -1,4 +1,4 @@
-import FavoriteBooks from '../pageobjects/favorite-books.page';
+import FavoriteBooks from '../support/pageobjects/favorite-books.page';
 
 module.exports = function when() {
   this.When(
