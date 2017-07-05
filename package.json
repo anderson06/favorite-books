@@ -7,12 +7,14 @@
   "scripts": {
     "start": "webpack-dev-server",
     "test:unit": "NODE_ENV=test jest",
-    "test:e2e": "NODE_ENV=test wdio",
+    "test-server": "NODE_ENV=test webpack && http-server ./dist -s -p 8081",
+    "test:e2e": "npm run test-server & (NODE_ENV=test wdio; wdio_ret=$?; kill $(lsof -t -i:8081); npm run clean; exit $wdio_ret)",
     "test": "npm run test:unit && npm run test:e2e",
     "lint": "eslint src --ext .js,.jsx",
     "predeploy": "NODE_ENV=production webpack",
     "deploy": "gh-pages -d dist",
-    "postdeploy": "rm -fr ./dist"
+    "postdeploy": "npm run clean",
+    "clean": "rm -fr ./dist"
   },
   "repository": {
     "type": "git",
