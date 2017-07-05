@@ -10,4 +10,14 @@ describe('<Volumes />', () => {
     const wrapper = shallow(<Volumes volumes={volumes} />);
     expect(wrapper.find(Volume).length).toBe(3);
   });
+
+  it('should generate a index number for each Volume', () => {
+    const volumes = [ volume(), volume(), volume() ];
+    const wrapper = shallow(<Volumes volumes={volumes} />);
+    expect(wrapper.find({ index: 0 }).length).toBe(1);
+    expect(wrapper.find({ index: 1 }).length).toBe(1);
+    expect(wrapper.find({ index: 2 }).length).toBe(1);
+    // expect(wrapper.find(Volume)[1].props.index).toBe(1);
+    // expect(wrapper.find(Volume)[2].props.index).toBe(2);
+  });
 });

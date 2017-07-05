@@ -34,7 +34,7 @@ npm test
 npm run test:unit
 
 # run unit tests in wath mode
-npm run test:unit -- -w
+npm run test:unit -- --watch
 
 # run end to end tests only
 npm run test:e2e
