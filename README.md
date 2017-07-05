@@ -21,8 +21,6 @@ Only run this and you are good to go
 npm install
 ```
 
-End with an example of getting some data out of the system or using it for a little demo
-
 ### Available commands
 
 ```shell
@@ -56,6 +54,6 @@ npm run deploy
 * [Cucumber.js](https://github.com/cucumber/cucumber-js) - BDD workflow
 * [WebdriverIO](http://webdriver.io/) - A Node.js bindings implementation for the W3C WebDriver protocol
 
-## Authors
+## Author
 
 * **Anderson Campos** - *Initial work* - [anderson06](https://github.com/anderson06)
