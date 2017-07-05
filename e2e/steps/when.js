@@ -20,4 +20,12 @@ module.exports = function when() {
     /^I click the previous page button$/,
     () => FavoriteBooks.previousPage.click()
   );
+
+  this.When(
+    /^I click the add to favorite icon on the (\d+)(st|nd|rd|th) result$/,
+    (resultNumber) => {
+      const element = FavoriteBooks.result(resultNumber);
+      element.click();
+    }
+  );
 };

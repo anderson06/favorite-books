@@ -23,8 +23,20 @@ class FavoriteBooks {
     return $('#previous-page');
   }
 
+  get favoriteIcon() {
+    return $('#previous-page');
+  }
+
+  get isFavoriteClassName() {
+    return 'fb-is-favorite';
+  }
+
   page(index) {
     return $(`.fb-page-${index}`);
+  }
+
+  result(index) {
+    return $(`'.fb-volume-${index}`);
   }
 
   open() {
