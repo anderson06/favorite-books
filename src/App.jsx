@@ -1,33 +1,17 @@
 import React, { Component } from 'react';
 import { SearchResults } from './components/search-results';
 import SearchForm from './components/search/search-form';
+import parseVolume from './utilities/parseVolume';
 import getVolumes from './services/books';
 import './App.scss';
 
 class App extends Component {
-
-  static parseVolumes(items) {
-    const volumes = items.map((item) => {
-      let thumbnail = null;
-      if (item.volumeInfo.imageLinks) {
-        thumbnail = item.volumeInfo.imageLinks.thumbnail;
-      }
-      return {
-        thumbnail,
-        id: item.id,
-        title: item.volumeInfo.title,
-        description: item.volumeInfo.description,
-      };
-    });
-    return volumes;
-  }
 
   constructor() {
     super();
     this.state = {
       page: 0,
       totalPages: 0,
-      items: [],
       volumes: [],
       searchQuery: '',
     };
@@ -64,12 +48,10 @@ class App extends Component {
     const { searchQuery } = this.state;
     getVolumes(searchQuery, page)
       .then((response) => {
-        console.log(response.data.totalItems, Math.floor(response.data.totalItems / 10));
         this.setState({
           page,
           totalPages: Math.floor(response.data.totalItems / 10),
-          items: response.data.items,
-          volumes: App.parseVolumes(response.data.items),
+          volumes: response.data.items.map(parseVolume),
         });
       })
       .catch((error) => {
@@ -79,7 +61,6 @@ class App extends Component {
         this.setState({
           page,
           totalPages: 0,
-          items: [],
           volumes: [],
         });
       });
