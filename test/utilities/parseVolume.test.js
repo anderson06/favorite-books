@@ -22,10 +22,10 @@ describe('parseVolume', () => {
     };
     const actual = parseVolume(fakeVolume);
     const expected = {
-        id,
-        title,
-        thumbnail,
-        description,
+      id,
+      title,
+      thumbnail,
+      description,
     };
     expect(actual).toEqual(expected);
   });
@@ -41,9 +41,9 @@ describe('parseVolume', () => {
     };
     const actual = parseVolume(noThumbnailVolume);
     const expected = {
-        id,
-        title,
-        description,
+      id,
+      title,
+      description,
     };
     expect(actual).toEqual(expected);
   });

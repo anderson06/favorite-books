@@ -14,7 +14,7 @@ const Volume = ({ thumbnail, title, description }) => {
   }
   return (
     <li
-      className={`fb-volume collection-item avatar`}
+      className={'fb-volume collection-item avatar'}
     >
       {image}
       <span className="title truncate">{title}</span>

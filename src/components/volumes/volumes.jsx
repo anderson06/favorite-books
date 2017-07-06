@@ -6,7 +6,7 @@ const Volumes = ({ volumes }) => {
   if (volumes.length === 0) {
     return null;
   }
-  const listVolumes = volumes.map((volume) => (
+  const listVolumes = volumes.map(volume => (
     <Volume key={volume.id} {...volume} />
   ));
   return (

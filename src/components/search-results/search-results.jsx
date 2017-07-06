@@ -1,7 +1,7 @@
 import React from 'react';
 import { arrayOf, shape, number } from 'prop-types';
 import { Volumes, Volume } from '../volumes';
-import Pagination from './pagination';
+import Pagination from './Pagination';
 
 const SearchResults = (props) => {
   if (props.volumes.length === 0) {

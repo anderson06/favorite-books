@@ -44,7 +44,7 @@ const Pagination = (props) => {
       </li>
     </ul>
   );
-}
+};
 
 Pagination.propTypes = {
   currentPage: PropTypes.number,

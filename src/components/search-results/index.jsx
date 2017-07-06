@@ -1,4 +1,4 @@
 import SearchResults from './search-results';
-import Pagination from './pagination';
+import Pagination from './Pagination';
 
 export { SearchResults, Pagination };
