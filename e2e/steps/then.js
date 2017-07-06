@@ -22,9 +22,10 @@ module.exports = function then() {
 
   this.When(
     /^I expect to see an icon that shows the (\d+)(st|nd|rd|th) result is one of my favorite books$/,
-    (resultNumber) => {
-      const element = FavoriteBooks.result(resultNumber);
-      const classesList = element.getAttribute('className').split(' ');
+    (resultPosition) => {
+      const index = resultPosition - 1;
+      const favoritesButton = FavoriteBooks.favoritesButton(index);
+      const classesList = favoritesButton.getAttribute('className').split(' ');
       expect(classesList).to.include(FavoriteBooks.isFavoriteClassName);
     }
   );

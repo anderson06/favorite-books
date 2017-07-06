@@ -1,5 +1,6 @@
 import React from 'react';
-import Volume from '../../../src/components/volumes/volume';
+import { shallow } from 'enzyme';
+import { Volume } from '../../../src/components/volumes';
 import renderer from 'react-test-renderer';
 
 describe('<Volume />', () => {
@@ -16,13 +17,13 @@ describe('<Volume />', () => {
   });
 
   it('renders a book placeholder image when no thumbnail is passed', () => {
-    const tree = renderer.create(
+    const wrapper = shallow(
       <Volume
         id="000"
         title="Fake title"
         description="Fake description"
       />
-    ).toJSON();
-    expect(tree).toMatchSnapshot();
+    );
+    expect(wrapper.find('.placeholder').length).toBe(1);
   });
 });

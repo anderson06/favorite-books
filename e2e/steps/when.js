@@ -23,9 +23,10 @@ module.exports = function when() {
 
   this.When(
     /^I click the add to favorite icon on the (\d+)(st|nd|rd|th) result$/,
-    (resultNumber) => {
-      const element = FavoriteBooks.result(resultNumber);
-      element.click();
+    (resultPosition) => {
+      const index = resultPosition - 1;
+      const favoritesButton = FavoriteBooks.favoritesButton(index);
+      favoritesButton.click();
     }
   );
 };

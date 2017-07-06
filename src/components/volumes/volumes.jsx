@@ -6,8 +6,8 @@ const Volumes = ({ volumes }) => {
   if (volumes.length === 0) {
     return null;
   }
-  const listVolumes = volumes.map((volume, index) => (
-    <Volume key={volume.id} {...volume} index={index} />
+  const listVolumes = volumes.map((volume) => (
+    <Volume key={volume.id} {...volume} />
   ));
   return (
     <ul className="fb-volumes collection">

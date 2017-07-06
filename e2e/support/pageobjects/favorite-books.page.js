@@ -28,15 +28,19 @@ class FavoriteBooks {
   }
 
   get isFavoriteClassName() {
-    return 'fb-is-favorite';
+    return 'fb-favorite--on';
+  }
+
+  get results() {
+    return $$('.fb-volume');
+  }
+
+  favoritesButton(index) {
+    return $$('.fb-volume')[index].$('.fb-favorites-btn');
   }
 
   page(index) {
     return $(`.fb-page-${index}`);
-  }
-
-  result(index) {
-    return $(`'.fb-volume-${index}`);
   }
 
   open() {
