@@ -3,10 +3,6 @@ class FavoriteBooks {
     return $('#search');
   }
 
-  get searchInput() {
-    return $('#search');
-  }
-
   get searchForm() {
     return $('#search-form');
   }
