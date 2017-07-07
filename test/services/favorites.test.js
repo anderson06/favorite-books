@@ -2,27 +2,27 @@ import faker from 'faker';
 import Favorites from '../../src/services/favorites';
 
 describe('favorites', () => {
+  let favorites, favorite;
+
+  beforeEach(() => {
+    favorites = new Favorites();
+    favorite = { id: '000' };
+  });
+
   it('start with an empty list of favorites', () => {
-    const favorites = new Favorites();
     const actual = favorites.all();;
     const expected = [];
     expect(actual).toEqual(expected);
   });
 
   it('should be able to add favorites', () => {
-    const favorites = new Favorites();
-    const favorite = { id: faker.random.uuid() };
     favorites.add(favorite);
     const favoritesList = favorites.all();
     expect(favoritesList).toContain(favorite);
   });
 
   describe('isFavorite', () => {
-    let favorites, favorite;
-
     beforeEach(() => {
-      favorites = new Favorites();
-      favorite = { id: '000' };
       favorites.add(favorite);
     });
 
@@ -45,11 +45,7 @@ describe('favorites', () => {
   });
 
   describe('toggle', () => {
-    let favorites, favorite;
-
     beforeEach(() => {
-      favorites = new Favorites();
-      favorite = { id: '000' };
       favorites.add(favorite);
     });
 
@@ -58,16 +54,30 @@ describe('favorites', () => {
       favorites.toggle(otherFavorite);
       expect(favorites.isFavorite(otherFavorite)).toBe(true);
     });
+
+    it('should remove when it is already a favorite', () => {
+      favorites.toggle(favorite);
+      expect(favorites.isFavorite(favorite)).toBe(false);
+    });
   });
 
   describe('subscribe', () => {
-    it('should call subscribed callback on new favorite', () => {
-      const favorites = new Favorites();
-      const subscribed = jest.fn();
+    let subscribed;
+
+    beforeEach(() => {
+      subscribed = jest.fn();
       favorites.subscribe(subscribed);
-      const favorite = { id: faker.random.uuid() };
+    });
+
+    it('should call subscribed callback on new favorite', () => {
       favorites.add(favorite);
       expect(subscribed).toHaveBeenCalledTimes(1);
+    });
+
+    it('should call subscribed callback when a favorite is removed', () => {
+      favorites.add(favorite);
+      favorites.remove(favorite);
+      expect(subscribed).toHaveBeenCalledTimes(2);
     });
   });
 });

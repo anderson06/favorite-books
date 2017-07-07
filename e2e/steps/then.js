@@ -21,12 +21,17 @@ module.exports = function then() {
   );
 
   this.When(
-    /^I expect to see an icon that shows the (\d+)(st|nd|rd|th) result is one of my favorite books$/,
-    (resultPosition) => {
+    /^I expect to see an icon that shows the (\d+)(st|nd|rd|th) result is( not)* one of my favorite books$/,
+    (resultPosition, _, shouldNotBeFavorite) => {
       const index = resultPosition - 1;
       const favoritesButton = FavoriteBooks.favoritesButton(index);
       const classesList = favoritesButton.getAttribute('className').split(' ');
-      expect(classesList).to.include(FavoriteBooks.isFavoriteClassName);
+
+      if (shouldNotBeFavorite) {
+        expect(classesList).to.not.include(FavoriteBooks.isFavoriteClassName);
+      } else {
+        expect(classesList).to.include(FavoriteBooks.isFavoriteClassName);
+      }
     }
   );
 };

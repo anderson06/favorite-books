@@ -18,6 +18,12 @@ class Favorites {
     this.inform();
   }
 
+  remove(favorite) {
+    this.favorites = this.favorites
+      .filter(f => f.id !== favorite.id);
+    this.inform();
+  }
+
   isFavorite(volume) {
     if (!volume || !volume.id) {
       return false;
@@ -33,7 +39,7 @@ class Favorites {
 
   toggle(favorite) {
     if (this.isFavorite(favorite)) {
-      return;
+      this.remove(favorite);
     } else {
       this.add(favorite);
     }
