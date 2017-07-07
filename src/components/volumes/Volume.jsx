@@ -3,23 +3,25 @@ import PropTypes from 'prop-types';
 import FavoritesButton from './FavoritesButton';
 import './Volume.scss';
 
-const Volume = ({ thumbnail, title, description }) => {
+const Volume = (props) => {
   let image = (
     <div className="placeholder circle valign-wrapper center-align teal lighten-2">
       <i className="material-icons fb-thumbnail-icon">library_books</i>
     </div>
   );
-  if (thumbnail) {
-    image = <img src={thumbnail} alt="book cover" className="circle" />;
+  if (props.thumbnail) {
+    image = <img src={props.thumbnail} alt="book cover" className="circle" />;
   }
   return (
-    <li
-      className={'fb-volume collection-item avatar'}
-    >
+    <li className="fb-volume collection-item avatar">
       {image}
-      <span className="title truncate">{title}</span>
-      <p className="fb-truncate">{description}</p>
-      <FavoritesButton />
+      <span className="title truncate">{props.title}</span>
+      <p className="fb-truncate">{props.description}</p>
+      <FavoritesButton
+        onClick={props.onFavoriteButtonClick}
+        favorite={props.favorite}
+        volumeId={props.id}
+      />
     </li>
   );
 };

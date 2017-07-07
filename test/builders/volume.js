@@ -1,6 +1,6 @@
 const faker = require('faker');
 
-export function volume() {
+export function aVolume() {
   return {
     id: faker.random.alphaNumeric(),
     title: faker.lorem.sentence(),
@@ -9,6 +9,6 @@ export function volume() {
   };
 }
 
-export function volumeWith(override) {
+export function aVolumeWith(override) {
   return Object.assign(volume(), override);
 }

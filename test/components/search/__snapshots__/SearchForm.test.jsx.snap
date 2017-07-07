@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`<Volume /> renders correctly 1`] = `
+exports[`<SearchForm /> renders correctly 1`] = `
 <form
   className="fb-search"
   id="search-form"

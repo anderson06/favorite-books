@@ -36,7 +36,7 @@ class FavoriteBooks {
   }
 
   favoritesButton(index) {
-    return $$('.fb-volume')[index].$('.fb-favorites-btn');
+    return $$('.fb-volume')[index].$('.fb-favorite');
   }
 
   page(index) {

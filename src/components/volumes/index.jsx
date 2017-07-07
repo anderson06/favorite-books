@@ -1,6 +1,6 @@
-import Volumes from './volumes';
-import Volume from './volume';
+import VolumeList from './VolumeList';
+import Volume from './Volume';
 import FavoritesButton from './FavoritesButton';
 
-export { Volumes, Volume, FavoritesButton };
+export { VolumeList, Volume, FavoritesButton };
 

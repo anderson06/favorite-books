@@ -1,8 +1,8 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import { Volumes } from '../../../src/components/volumes';
+import { VolumeList } from '../../../src/components/volumes';
 import { SearchResults, Pagination } from '../../../src/components/search-results';
-import { volume } from '../../builders/volume';
+import { aVolume } from '../../builders/volume';
 
 describe('<SearchResults />', () => {
   it('should be null when no volumes are given', () => {
@@ -15,13 +15,13 @@ describe('<SearchResults />', () => {
     let volumes;
 
     beforeEach(() => {
-      volumes = [ volume(), volume(), volume() ];
+      volumes = [ aVolume(), aVolume(), aVolume() ];
       wrapper = shallow(<SearchResults volumes={volumes} />);
     });
 
-    it('should have a <Volumes /> component', () => {
-      expect(wrapper.find(Volumes).length).toBe(1);
-      expect(wrapper.find(Volumes).props().volumes).toBe(volumes);
+    it('should have a <VolumeList /> component', () => {
+      expect(wrapper.find(VolumeList).length).toBe(1);
+      expect(wrapper.find(VolumeList).props().volumes).toBe(volumes);
     });
 
     it('should have a <Pagination /> component', () => {

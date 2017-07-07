@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { SearchResults } from './components/search-results';
-import SearchForm from './components/search/search-form';
+import SearchForm from './components/search/SearchForm';
 import parseVolume from './utilities/parseVolume';
 import getVolumes from './services/books';
 import './App.scss';

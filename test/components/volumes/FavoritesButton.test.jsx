@@ -12,5 +12,14 @@ describe('<FavoritesButton />', () => {
     const wrapper = shallow(<FavoritesButton favorite />);
     expect(wrapper.hasClass('fb-favorite--on')).toBe(true);
   });
+
+  it('should call onClick with volumeId', () => {
+    const volumeId = '1';
+    const onClick = jest.fn();
+    const wrapper = shallow(<FavoritesButton volumeId={volumeId} onClick={onClick} />);
+    wrapper.simulate('click');
+    expect(onClick).toHaveBeenCalledTimes(1);
+    expect(onClick).toHaveBeenCalledWith({ id: volumeId });
+  });
 });
 

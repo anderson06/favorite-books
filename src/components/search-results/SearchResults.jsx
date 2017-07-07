@@ -1,6 +1,6 @@
 import React from 'react';
 import { arrayOf, shape, number } from 'prop-types';
-import { Volumes, Volume } from '../volumes';
+import { VolumeList, Volume } from '../volumes';
 import Pagination from './Pagination';
 
 const SearchResults = (props) => {
@@ -9,7 +9,7 @@ const SearchResults = (props) => {
   }
   return (
     <div className={`fb-page-${props.currentPage + 1}`}>
-      <Volumes {...props} />
+      <VolumeList {...props} />
       <Pagination {...props} />
     </div>
   );
