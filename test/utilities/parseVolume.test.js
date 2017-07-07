@@ -2,7 +2,10 @@ import faker from 'faker';
 import parseVolume from '../../src/utilities/parseVolume';
 
 describe('parseVolume', () => {
-  let id, title, thumbnail, description;
+  let id;
+  let title;
+  let thumbnail;
+  let description;
 
   beforeEach(() => {
     id = faker.random.uuid();
@@ -17,8 +20,8 @@ describe('parseVolume', () => {
       volumeInfo: {
         title,
         description,
-        imageLinks: { thumbnail }
-      }
+        imageLinks: { thumbnail },
+      },
     };
     const actual = parseVolume(fakeVolume);
     const expected = {
@@ -36,8 +39,8 @@ describe('parseVolume', () => {
       volumeInfo: {
         title,
         description,
-        imageLinks: {}
-      }
+        imageLinks: {},
+      },
     };
     const actual = parseVolume(noThumbnailVolume);
     const expected = {

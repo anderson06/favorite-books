@@ -27,15 +27,21 @@ const Volume = (props) => {
 };
 
 Volume.propTypes = {
+  onFavoriteButtonClick: PropTypes.func,
   description: PropTypes.string,
   thumbnail: PropTypes.string,
+  favorite: PropTypes.bool,
   title: PropTypes.string,
+  id: PropTypes.string,
 };
 
 Volume.defaultProps = {
+  onFavoriteButtonClick: () => {},
+  favorite: false,
   description: '',
   thumbnail: '',
   title: '',
+  id: '',
 };
 
 export default Volume;

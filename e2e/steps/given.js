@@ -3,7 +3,7 @@ import FavoriteBooks from '../support/pageobjects/favorite-books.page';
 module.exports = function given() {
   this.Given(
     /^I open the main page$/,
-    () => FavoriteBooks.open()
+    () => FavoriteBooks.open(),
   );
 
   this.Given(
@@ -13,6 +13,6 @@ module.exports = function given() {
       FavoriteBooks.searchInput.setValue('Game of Throne');
       FavoriteBooks.searchForm.submitForm();
       FavoriteBooks.searchResults.waitForExist();
-    }
+    },
   );
 };

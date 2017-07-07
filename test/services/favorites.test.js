@@ -1,8 +1,8 @@
-import faker from 'faker';
 import Favorites from '../../src/services/favorites';
 
 describe('favorites', () => {
-  let favorites, favorite;
+  let favorites;
+  let favorite;
 
   beforeEach(() => {
     favorites = new Favorites();
@@ -10,7 +10,7 @@ describe('favorites', () => {
   });
 
   it('start with an empty list of favorites', () => {
-    const actual = favorites.all();;
+    const actual = favorites.all();
     const expected = [];
     expect(actual).toEqual(expected);
   });

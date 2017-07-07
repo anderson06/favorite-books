@@ -15,7 +15,7 @@ describe('<SearchResults />', () => {
     let volumes;
 
     beforeEach(() => {
-      volumes = [ aVolume(), aVolume(), aVolume() ];
+      volumes = [aVolume(), aVolume(), aVolume()];
       wrapper = shallow(<SearchResults volumes={volumes} />);
     });
 

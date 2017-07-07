@@ -1,3 +1,5 @@
+/* eslint class-methods-use-this: "off" */
+
 class FavoriteBooks {
   get searchInput() {
     return $('#search');

@@ -12,14 +12,14 @@ describe('<VolumeList />', () => {
   });
 
   it('should render a list of <Volume /> components', () => {
-    const volumes = [ aVolume(), aVolume(), aVolume() ];
+    const volumes = [aVolume(), aVolume(), aVolume()];
     const wrapper = shallow(<VolumeList volumes={volumes} />);
     expect(wrapper.find(Volume).length).toBe(3);
   });
 
   it('should instantiate favorite', () => {
     const volume = aVolume();
-    const wrapper = shallow(<VolumeList volumes={[volume]} />);
+    shallow(<VolumeList volumes={[volume]} />);
     expect(Favorites.mock.instances.length).toBe(1);
   });
 

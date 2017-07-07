@@ -19,10 +19,14 @@ const FavoritesButton = ({ favorite, volumeId, onClick }) => (
 
 FavoritesButton.propTypes = {
   favorite: PropTypes.bool,
+  volumeId: PropTypes.string,
+  onClick: PropTypes.func,
 };
 
 FavoritesButton.defaultProps = {
   favorite: false,
+  volumeId: '',
+  onClick: () => {},
 };
 
 export default FavoritesButton;

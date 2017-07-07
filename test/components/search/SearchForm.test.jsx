@@ -1,6 +1,6 @@
 import React from 'react';
-import SearchForm from '../../../src/components/search/SearchForm.jsx';
 import renderer from 'react-test-renderer';
+import SearchForm from '../../../src/components/search/SearchForm';
 
 describe('<SearchForm />', () => {
   it('renders correctly', () => {

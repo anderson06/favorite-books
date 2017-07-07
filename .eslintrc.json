@@ -8,5 +8,8 @@
   "extends": "airbnb",
   "plugins": [
     "webdriverio"
-  ]
+  ],
+  "rules": {
+    "no-underscore-dangle": "off"
+  }
 }

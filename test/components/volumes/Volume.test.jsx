@@ -1,8 +1,7 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import renderer from 'react-test-renderer';
 import { Volume, FavoritesButton } from '../../../src/components/volumes';
-import { aVolume, aVolumeWith } from '../../builders/volume';
+import { aVolume } from '../../builders/volume';
 
 describe('<Volume />', () => {
   it('renders a book placeholder image when no thumbnail is passed', () => {
@@ -30,7 +29,7 @@ describe('<Volume />', () => {
   });
 
   it('should set volumeId prop to FavoritesButton', () => {
-    const volume = aVolume()
+    const volume = aVolume();
     const wrapper = shallow(<Volume {...volume} />);
     const { volumeId } = wrapper.find(FavoritesButton).props();
     expect(volumeId).toBe(volume.id);

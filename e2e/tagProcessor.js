@@ -4,10 +4,6 @@
 * @return {Array}                   The tags to process
 */
 module.exports = (consoleArguments) => {
-  // This is required since this file is not parsed with Babel
-
-  'use strict';
-
   /**
    * The tags to pass to the cucumber options
    * @type {Array}

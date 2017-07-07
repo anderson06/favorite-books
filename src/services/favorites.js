@@ -9,7 +9,7 @@ class Favorites {
   }
 
   inform() {
-    //Utils.store(this.key, this.todos);
+    // Utils.store(this.key, this.todos);
     this.onChanges.forEach(cb => cb());
   }
 
