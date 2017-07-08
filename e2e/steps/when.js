@@ -29,4 +29,14 @@ module.exports = function when() {
       favoritesButton.click();
     },
   );
+
+  this.When(
+    /^I go to a search result page that has more than 10 results$/,
+    () => FavoriteBooks.search('Game of Thrones'),
+  );
+
+  this.When(
+    /^I reload the page$/,
+    () => FavoriteBooks.open(),
+  );
 };

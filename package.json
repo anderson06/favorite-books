@@ -96,6 +96,7 @@
   },
   "jest": {
     "testRegex": "(/__tests__/.*|\\.(test|spec))\\.(jsx|js)$",
+    "setupFiles": ["<rootDir>/test/__mocks__/localStorageMock.js"],
     "moduleFileExtensions": [
       "js",
       "jsx"

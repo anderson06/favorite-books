@@ -44,6 +44,14 @@ class FavoriteBooks {
   open() {
     browser.url('/');
   }
+
+  search(searchQuery) {
+    this.open();
+    this.searchInput.waitForExist();
+    this.searchInput.setValue(searchQuery);
+    this.searchForm.submitForm();
+    this.searchResults.waitForExist();
+  }
 }
 
 export default new FavoriteBooks();

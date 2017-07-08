@@ -1,4 +1,5 @@
 import Favorites from '../../src/services/favorites';
+import store from '../../src/utilities/store';
 
 describe('favorites', () => {
   let favorites;
@@ -7,11 +8,21 @@ describe('favorites', () => {
   beforeEach(() => {
     favorites = new Favorites();
     favorite = { id: '000' };
+    localStorage.clear();
   });
 
-  it('start with an empty list of favorites', () => {
+  it('shoudl start with an empty list of favorites', () => {
     const actual = favorites.all();
     const expected = [];
+    expect(actual).toEqual(expected);
+  });
+
+  it('should load favorites from store', () => {
+    const favoriteList = [{ id: '000' }];
+    store(Favorites.key, favoriteList);
+    const storedFavorites = new Favorites();
+    const actual = storedFavorites.all();
+    const expected = favoriteList;
     expect(actual).toEqual(expected);
   });
 
@@ -19,6 +30,26 @@ describe('favorites', () => {
     favorites.add(favorite);
     const favoritesList = favorites.all();
     expect(favoritesList).toContain(favorite);
+  });
+
+  it('should add favorites to store', () => {
+    favorites.add(favorite);
+    const storedList = store(Favorites.key);
+    expect(storedList).toContainEqual(favorite);
+  });
+
+  it('should remove favorites', () => {
+    favorites.add(favorite);
+    favorites.remove(favorite);
+    const favoritesList = favorites.all();
+    expect(favoritesList).not.toContain(favorite);
+  });
+
+  it('should remove favorites from store', () => {
+    favorites.add(favorite);
+    favorites.remove(favorite);
+    const storedList = store(Favorites.key);
+    expect(storedList).not.toContainEqual(favorite);
   });
 
   describe('isFavorite', () => {

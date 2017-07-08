@@ -1,6 +1,8 @@
+import store from '../utilities/store';
+
 class Favorites {
   constructor() {
-    this.favorites = [];
+    this.favorites = store(Favorites.key) || [];
     this.onChanges = [];
   }
 
@@ -9,7 +11,7 @@ class Favorites {
   }
 
   inform() {
-    // Utils.store(this.key, this.todos);
+    store(Favorites.key, this.favorites);
     this.onChanges.forEach(cb => cb());
   }
 
@@ -45,6 +47,8 @@ class Favorites {
     }
   }
 }
+
+Favorites.key = 'FAVORITES';
 
 export default Favorites;
 
