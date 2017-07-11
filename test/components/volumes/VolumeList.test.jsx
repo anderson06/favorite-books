@@ -59,4 +59,17 @@ describe('<VolumeList />', () => {
     const { onFavoriteButtonClick } = wrapper.find(Volume).props();
     expect(onFavoriteButtonClick).toBe(handleFavoriteButtonClick);
   });
+
+  describe('when onVolumeClick is passed', () => {
+    it('should pass as onClick to all <Volume /> components', () => {
+      const onVolumeClick = () => {};
+      const wrapper = shallow(<VolumeList
+        volumes={[aVolume(), aVolume(), aVolume()]}
+        onVolumeClick={onVolumeClick}
+      />);
+      wrapper.find(Volume).forEach(component => {
+        expect(component.props()).toHaveProperty('onClick', onVolumeClick);
+      });
+    });
+  });
 });

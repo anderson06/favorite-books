@@ -19,7 +19,7 @@ class VolumeList extends Component {
   }
 
   render() {
-    const { volumes } = this.props;
+    const { volumes, onVolumeClick } = this.props;
     if (volumes.length === 0) {
       return null;
     }
@@ -29,6 +29,7 @@ class VolumeList extends Component {
         {...volume}
         favorite={this.favorites.isFavorite(volume)}
         onFavoriteButtonClick={this.handleFavoriteButtonClick}
+        onClick={onVolumeClick}
       />
     ));
     return (

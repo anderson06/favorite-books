@@ -39,4 +39,12 @@ module.exports = function when() {
     /^I reload the page$/,
     () => FavoriteBooks.open(),
   );
+
+  this.When(
+    /^I click on the (\d+)(st|nd|rd|th) result$/,
+    (resultPosition) => {
+      const index = resultPosition - 1;
+      FavoriteBooks.results[index].click();
+    },
+  );
 };

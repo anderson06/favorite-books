@@ -11,7 +11,11 @@ const FavoritesButton = ({ favorite, volumeId, onClick }) => (
       'fb-favorite',
       { 'fb-favorite--on': favorite },
     )}
-    onClick={() => onClick({ id: volumeId })}
+    onClick={(event) => {
+      event.preventDefault();
+      event.stopPropagation();
+      onClick({ id: volumeId });
+    }}
   >
     <i className="material-icons">grade</i>
   </a>

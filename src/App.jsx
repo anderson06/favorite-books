@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import { SearchResults } from './components/search-results';
 import SearchForm from './components/search/SearchForm';
+import { VolumeInfo } from './components/volumes';
 import parseVolume from './utilities/parseVolume';
-import getVolumes from './services/books';
+import { getVolumes } from './services/books';
 import './App.scss';
 
 class App extends Component {
@@ -10,6 +11,7 @@ class App extends Component {
   constructor() {
     super();
     this.state = {
+      currentVolume: null,
       page: 0,
       totalPages: 0,
       volumes: [],
@@ -17,8 +19,10 @@ class App extends Component {
     };
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleChange = this.handleChange.bind(this);
+    this.handleVolumeClick = this.handleVolumeClick.bind(this);
     this.handleNextPageClick = this.handleNextPageClick.bind(this);
     this.handlePreviousPageClick = this.handlePreviousPageClick.bind(this);
+    this.handleVolumeInfoCloseClick = this.handleVolumeInfoCloseClick.bind(this);
   }
 
   handleSubmit(event) {
@@ -44,6 +48,14 @@ class App extends Component {
     this.setState({ searchQuery: event.target.value });
   }
 
+  handleVolumeClick(volume) {
+    this.setState({ currentVolume: volume });
+  }
+
+  handleVolumeInfoCloseClick() {
+    this.setState({ currentVolume: null });
+  }
+
   loadBooks(page = 0) {
     const { searchQuery } = this.state;
     getVolumes(searchQuery, page)
@@ -66,14 +78,10 @@ class App extends Component {
       });
   }
 
-  render() {
+  renderSearch() {
     const { volumes, page, totalPages } = this.state;
     return (
-      <div className="fb container">
-        <div className="fb-header section">
-          <h1 className="fb-title">Favorite Books</h1>
-        </div>
-
+      <div>
         <div className="section">
           <SearchForm
             onChange={this.handleChange}
@@ -86,10 +94,34 @@ class App extends Component {
             currentPage={page}
             totalPages={totalPages}
             volumes={volumes}
+            onVolumeClick={this.handleVolumeClick}
             onNextPageClick={this.handleNextPageClick}
             onPreviousPageClick={this.handlePreviousPageClick}
           />
         </div>
+      </div>
+    );
+  }
+
+  renderVolumeInfo() {
+    const { currentVolume } = this.state;
+    return (
+      <VolumeInfo
+        volume={currentVolume}
+        onCloseClick={this.handleVolumeInfoCloseClick}
+      />
+    );
+  }
+
+  render() {
+    const { currentVolume } = this.state;
+    return (
+      <div className="fb container">
+        <div className="fb-header section">
+          <h1 className="fb-title">Favorite Books</h1>
+        </div>
+
+        {currentVolume ? this.renderVolumeInfo() : this.renderSearch()}
       </div>
     );
   }

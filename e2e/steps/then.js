@@ -34,4 +34,11 @@ module.exports = function then() {
       }
     },
   );
+
+  this.When(
+    /^I expect to see more info about the book$/,
+    () => {
+      FavoriteBooks.info.waitForVisible();
+    },
+  );
 };

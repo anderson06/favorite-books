@@ -24,6 +24,10 @@ describe('<SearchResults />', () => {
       expect(wrapper.find(VolumeList).props().volumes).toBe(volumes);
     });
 
+    it('should pass undefined for onVolumeClick to <VolumeList /> component', () => {
+      expect(wrapper.find(VolumeList).props().onVolumeClick).not.toBeDefined();
+    });
+
     it('should have a <Pagination /> component', () => {
       expect(wrapper.find(Pagination).length).toBe(1);
     });
@@ -31,6 +35,21 @@ describe('<SearchResults />', () => {
     it('should have a className showing the current page', () => {
       wrapper = shallow(<SearchResults volumes={volumes} currentPage={2} />);
       expect(wrapper.hasClass('fb-page-3')).toBe(true);
+    });
+  });
+
+  describe('when volumes and onVolumeClick are passed', () => {
+    let wrapper;
+    let volumes;
+    let onVolumeClick = () => {};
+
+    beforeEach(() => {
+      volumes = [aVolume(), aVolume(), aVolume()];
+      wrapper = shallow(<SearchResults volumes={volumes} onVolumeClick={onVolumeClick} />);
+    });
+
+    it('should pass onVolumeClick to <VolumeList /> component', () => {
+      expect(wrapper.find(VolumeList).props().onVolumeClick).toBe(onVolumeClick);
     });
   });
 });

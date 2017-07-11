@@ -25,6 +25,10 @@ class FavoriteBooks {
     return $('#previous-page');
   }
 
+  get info() {
+    return $('#info');
+  }
+
   get isFavoriteClassName() {
     return 'fb-favorite--on';
   }

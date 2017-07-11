@@ -34,4 +34,23 @@ describe('<Volume />', () => {
     const { volumeId } = wrapper.find(FavoritesButton).props();
     expect(volumeId).toBe(volume.id);
   });
+
+  describe('on element click', () => {
+    it('should prevent default behavior', () => {
+      const volume = aVolume();
+      const wrapper = shallow(<Volume {...volume} />);
+      const preventDefault = jest.fn();
+      wrapper.simulate('click', { preventDefault });
+      expect(preventDefault).toHaveBeenCalledTimes(1);
+    });
+
+    it('should call onClick prop with volume id', () => {
+      const volume = aVolume();
+      const onClick = jest.fn();
+      const wrapper = shallow(<Volume {...volume} onClick={onClick} />);
+      wrapper.simulate('click', { preventDefault: () => {} });
+      expect(onClick).toHaveBeenCalledTimes(1);
+      expect(onClick).toHaveBeenCalledWith({ id: volume.id });
+    });
+  });
 });
