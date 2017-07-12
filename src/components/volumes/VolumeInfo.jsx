@@ -86,15 +86,19 @@ class VolumeInfo extends Component {
     return (
       <div className="fb-info" id="info">
         {closeButton}
-        <div className="">
-          <div className="cover-container">
-            <img src={ updateProtocol(volumeInfo.imageLinks.small) } className="cover-image" />
+        <div className="row">
+          <div className="col s12 m4">
+            <div className="cover-container">
+              <img src={ updateProtocol(volumeInfo.imageLinks.small) } className="cover-image" />
+            </div>
           </div>
-          <div className="info-box-top">
-            <h1 className="volume-title">{ volumeInfo.title }</h1>
-            { authors }
-            <div>{ volumeInfo.publisher }</div>
-            <div>{ volumeInfo.publishedDate }</div>
+          <div className="col s12 m8">
+            <div className="info-box-top">
+              <h1 className="volume-title">{ volumeInfo.title }</h1>
+              { authors }
+              <div>{ volumeInfo.publisher }</div>
+              <div>{ volumeInfo.publishedDate }</div>
+            </div>
           </div>
         </div>
         <div
