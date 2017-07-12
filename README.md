@@ -37,6 +37,7 @@ npm run test:unit
 npm run test:unit -- --watch
 
 # run end to end tests only
+# *you need to have your local server running first
 npm run test:e2e
 
 # coding style tests
