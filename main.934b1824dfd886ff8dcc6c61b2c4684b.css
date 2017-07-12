@@ -11,6 +11,9 @@ body {
     color: #ff9800; }
 .fb-thumbnail-icon {
   line-height: 42px; }
+
+.highlight {
+  font-weight: bold; }
 .fb-info {
   position: relative; }
 
