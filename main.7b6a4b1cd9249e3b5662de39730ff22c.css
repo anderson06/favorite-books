@@ -9,11 +9,26 @@ body {
   color: #9e9e9e; }
   .fb-favorite--on {
     color: #ff9800; }
+.fb-volume {
+  cursor: pointer; }
+
+.fb-volume-title {
+  margin-right: 20px; }
+
 .fb-thumbnail-icon {
   line-height: 42px; }
 
 .highlight {
   font-weight: bold; }
+
+.fb-volume-cover {
+  position: absolute;
+  width: 42px;
+  overflow: hidden;
+  left: 15px;
+  display: inline-block;
+  vertical-align: middle;
+  border: 0; }
 .fb-info {
   position: relative; }
 
