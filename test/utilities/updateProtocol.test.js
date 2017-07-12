@@ -5,7 +5,7 @@ describe('updateProtocol', () => {
   // see https://github.com/facebook/jest/issues/890
   Object.defineProperty(window.location, 'protocol', {
     writable: true,
-    value: 'https:'
+    value: 'https:',
   });
 
   it('should convert a url protocol to https when page protocol is https', () => {
@@ -38,5 +38,4 @@ describe('updateProtocol', () => {
     expect(result).toEqual(url);
   });
 });
-
 

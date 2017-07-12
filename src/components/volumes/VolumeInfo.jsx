@@ -1,6 +1,10 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { getVolume } from '../../services/books';
 import updateProtocol from '../../utilities/updateProtocol';
+import Volume from './Volume';
+import Loading from './Loading';
+import ErrorMessage from './ErrorMessage';
 import './VolumeInfo.scss';
 
 class VolumeInfo extends Component {
@@ -19,7 +23,7 @@ class VolumeInfo extends Component {
       return;
     }
 
-    const promise = getVolume(this.props.volume.id)
+    getVolume(this.props.volume.id)
       .then((response) => {
         this.setState({
           loading: false,
@@ -41,37 +45,12 @@ class VolumeInfo extends Component {
     }
   }
 
-  renderLoading() {
-    return (
-      <div className="col s12 m4 center fb-loading">
-        <div className="preloader-wrapper active">
-          <div className="spinner-layer spinner-red-only">
-            <div className="circle-clipper left">
-              <div className="circle"></div>
-              </div><div className="gap-patch">
-              <div className="circle"></div>
-              </div><div className="circle-clipper right">
-              <div className="circle"></div>
-            </div>
-          </div>
-        </div>
-      </div>
-    );
-  }
-
-  renderErrorMessage() {
-    return (
-      <div className="fb-fail-message">
-        <h5>Ocorreu um erro</h5>
-        <p>Tente novamente mais tarde</p>
-      </div>
-    );
-  }
-
   renderInfo() {
     const { volumeInfo } = this.state.currentVolume;
     const closeButton = (
       <div
+        tabIndex="0"
+        role="button"
         className="fb-close-button"
         onClick={this.handleCloseClick}
       >
@@ -89,14 +68,18 @@ class VolumeInfo extends Component {
       authors = volumeInfo.authors.map((author, index) => <div key={index}>{author}</div>);
     }
 
-    const description = {__html: volumeInfo.description};
+    const description = { __html: volumeInfo.description };
     return (
       <div className="fb-info" id="info">
         {closeButton}
         <div className="row">
           <div className="col s12 m4">
             <div className="cover-container">
-              <img src={ updateProtocol(volumeInfo.imageLinks.small) } className="cover-image" />
+              <img
+                src={updateProtocol(volumeInfo.imageLinks.small)}
+                className="cover-image"
+                alt="book cover"
+              />
             </div>
           </div>
           <div className="col s12 m8">
@@ -118,11 +101,11 @@ class VolumeInfo extends Component {
 
   render() {
     if (this.state.error) {
-      return this.renderErrorMessage();
+      return <ErrorMessage />;
     }
 
     if (this.state.loading) {
-      return this.renderLoading();
+      return <Loading />;
     }
 
     if (this.state.currentVolume) {
@@ -132,5 +115,14 @@ class VolumeInfo extends Component {
     return null;
   }
 }
+
+VolumeInfo.propTypes = {
+  volume: PropTypes.shape(Volume.propTypes).isRequired,
+  onCloseClick: PropTypes.func,
+};
+
+VolumeInfo.defaultProps = {
+  onCloseClick: () => {},
+};
 
 export default VolumeInfo;

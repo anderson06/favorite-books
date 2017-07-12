@@ -1,5 +1,4 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 import { shallow } from 'enzyme';
 import { aVolume } from './builders/volume';
 import App from '../src/App';
@@ -69,7 +68,8 @@ describe('<App />', () => {
     const wrapper = shallow(<App />);
     const volume = aVolume();
     wrapper.setState({ currentVolume: volume });
-    expect(wrapper.find(VolumeInfo).props().onCloseClick).toBe(wrapper.instance().handleVolumeInfoCloseClick);
+    expect(wrapper.find(VolumeInfo).props().onCloseClick)
+      .toBe(wrapper.instance().handleVolumeInfoCloseClick);
   });
 
   describe('handleVolumeInfoCloseClick', () => {

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { arrayOf, shape } from 'prop-types';
+import { arrayOf, shape, func, string } from 'prop-types';
 import Volume from './Volume';
 import Favorites from '../../models/favorites';
 
@@ -42,10 +42,14 @@ class VolumeList extends Component {
 
 VolumeList.propTypes = {
   volumes: arrayOf(shape(Volume.propTypes)),
+  onVolumeClick: func,
+  searchQuery: string,
 };
 
 VolumeList.defaultProps = {
   volumes: [],
+  onVolumeClick: () => {},
+  searchQuery: '',
 };
 
 export default VolumeList;

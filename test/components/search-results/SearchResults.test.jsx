@@ -24,10 +24,6 @@ describe('<SearchResults />', () => {
       expect(wrapper.find(VolumeList).props().volumes).toBe(volumes);
     });
 
-    it('should pass undefined for onVolumeClick to <VolumeList /> component', () => {
-      expect(wrapper.find(VolumeList).props().onVolumeClick).not.toBeDefined();
-    });
-
     it('should have a <Pagination /> component', () => {
       expect(wrapper.find(Pagination).length).toBe(1);
     });
@@ -41,7 +37,7 @@ describe('<SearchResults />', () => {
   describe('when volumes and onVolumeClick are passed', () => {
     let wrapper;
     let volumes;
-    let onVolumeClick = () => {};
+    const onVolumeClick = () => {};
 
     beforeEach(() => {
       volumes = [aVolume(), aVolume(), aVolume()];
@@ -56,7 +52,7 @@ describe('<SearchResults />', () => {
   describe('when volumes and searQuery are passed', () => {
     let wrapper;
     let volumes;
-    let searchQuery = 'a search query';
+    const searchQuery = 'a search query';
 
     beforeEach(() => {
       volumes = [aVolume(), aVolume(), aVolume()];

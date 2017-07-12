@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import FavoritesButton from './FavoritesButton';
 import updateProtocol from '../../utilities/updateProtocol';
-import * as diacritics from 'diacritics';
+import highlight from '../../utilities/highlight';
 import './Volume.scss';
 
 class Volume extends Component {
@@ -18,26 +18,6 @@ class Volume extends Component {
     }
   }
 
-  highlight(query, text) {
-    if (!query || !text) {
-      return text;
-    }
-    const searchText = diacritics.remove(text.toLowerCase())
-    const searchQuery = diacritics.remove(query.toLowerCase())
-    const start = searchText.indexOf(searchQuery);
-    const end = start + query.length;
-    if (start === -1) {
-      return text;
-    }
-    return (
-      <span>
-        {text.substring(0, start)}
-        <span className="highlight">{text.substring(start, end)}</span>
-        {text.substring(end, text.length)}
-      </span>
-    );
-  }
-
   render() {
     let image = (
       <div className="placeholder circle valign-wrapper center-align teal lighten-2">
@@ -45,7 +25,13 @@ class Volume extends Component {
       </div>
     );
     if (this.props.thumbnail) {
-      image = <img src={updateProtocol(this.props.thumbnail)} alt="book cover" className="fb-volume-cover" />;
+      image = (
+        <img
+          src={updateProtocol(this.props.thumbnail)}
+          alt="book cover"
+          className="fb-volume-cover"
+        />
+      );
     }
     return (
       <li
@@ -53,8 +39,12 @@ class Volume extends Component {
         onClick={this.handleClick}
       >
         {image}
-        <span className="title truncate">{this.highlight(this.props.searchQuery, this.props.title)}</span>
-        <p className="fb-truncate fb-description">{this.highlight(this.props.searchQuery, this.props.description)}</p>
+        <span className="title truncate">
+          {highlight(this.props.searchQuery, this.props.title)}
+        </span>
+        <p className="fb-truncate fb-description">
+          {highlight(this.props.searchQuery, this.props.description)}
+        </p>
         <FavoritesButton
           onClick={this.props.onFavoriteButtonClick}
           favorite={this.props.favorite}
@@ -63,20 +53,24 @@ class Volume extends Component {
       </li>
     );
   }
-};
+}
 
 Volume.propTypes = {
   onFavoriteButtonClick: PropTypes.func,
+  searchQuery: PropTypes.string,
   description: PropTypes.string,
   thumbnail: PropTypes.string,
   favorite: PropTypes.bool,
+  onClick: PropTypes.func,
   title: PropTypes.string,
   id: PropTypes.string,
 };
 
 Volume.defaultProps = {
   onFavoriteButtonClick: () => {},
+  onClick: () => {},
   favorite: false,
+  searchQuery: '',
   description: '',
   thumbnail: '',
   title: '',

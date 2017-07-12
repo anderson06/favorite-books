@@ -1,6 +1,6 @@
 import React from 'react';
 import { shallow, mount } from 'enzyme';
-import { VolumeInfo } from '../../../src/components/volumes';
+import { VolumeInfo, Loading, ErrorMessage } from '../../../src/components/volumes';
 import { getVolume } from '../../../src/services/books';
 import { aVolume } from '../../builders/volume';
 
@@ -31,7 +31,7 @@ describe('<VolumeInfo />', () => {
 
   it('should have a loading element by default', () => {
     const wrapper = shallow(<VolumeInfo volume={volume} />);
-    expect(wrapper.find('.fb-loading').length).toBe(1);
+    expect(wrapper.find(Loading).length).toBe(1);
   });
 
   describe('handleCloseClick', () => {
@@ -44,7 +44,7 @@ describe('<VolumeInfo />', () => {
   });
 
   describe('.close onClick', () => {
-    it('should call handleCloseClick', done => {
+    it('should call handleCloseClick', (done) => {
       const wrapper = shallow(<VolumeInfo volume={volume} />);
       const spy = jest.spyOn(wrapper.instance(), 'handleCloseClick');
       wrapper.setState({ currentVolume: volume, loading: false }, () => {
@@ -74,7 +74,6 @@ describe('<VolumeInfo />', () => {
 
     it('finish loading, reset currentVolume and show an error message when fetch fails', () => {
       expect.assertions(5);
-      const serviceVolume = aVolume();
       const promise = Promise.reject(new Error('meu erro'));
       getVolume.mockReturnValueOnce(promise);
       const wrapper = mount(<VolumeInfo volume={volume} />);
@@ -91,7 +90,7 @@ describe('<VolumeInfo />', () => {
   });
 
   describe('when loading is true and error is false', () => {
-    it('shouldn\'t have a loading element', done => {
+    it('shouldn\'t have a loading element', (done) => {
       const wrapper = shallow(<VolumeInfo volume={volume} />);
       wrapper.setState({ loading: false }, () => {
         expect(wrapper.find('.fb-loading').length).toBe(0);
@@ -101,17 +100,17 @@ describe('<VolumeInfo />', () => {
   });
 
   describe('when error is true', () => {
-    it('shouldn have a error message', done => {
+    it('shouldn have a error message', (done) => {
       const wrapper = shallow(<VolumeInfo volume={volume} />);
       wrapper.setState({ error: true }, () => {
-        expect(wrapper.find('.fb-fail-message').length).toBe(1);
+        expect(wrapper.find(ErrorMessage).length).toBe(1);
         done();
       });
     });
   });
 
   describe('when currentVolume is set and erro and loading are false', () => {
-    it('should display volume info', done => {
+    it('should display volume info', (done) => {
       const wrapper = shallow(<VolumeInfo volume={volume} />);
       wrapper.setState({ currentVolume: volume, loading: false }, () => {
         expect(wrapper.find('.fb-info').length).toBe(1);

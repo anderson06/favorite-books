@@ -13,6 +13,6 @@ module.exports = function given() {
 
   this.Given(
     /^I search for "([^"]*)?"$/,
-    (bookName) => FavoriteBooks.search(bookName),
+    bookName => FavoriteBooks.search(bookName),
   );
 };

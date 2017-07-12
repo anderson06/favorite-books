@@ -1,4 +1,3 @@
-@wip
 Feature: Highlight search result
   As a user
   In order to improve my search experience

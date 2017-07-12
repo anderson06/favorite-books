@@ -67,7 +67,7 @@ describe('<VolumeList />', () => {
         volumes={[aVolume(), aVolume(), aVolume()]}
         onVolumeClick={onVolumeClick}
       />);
-      wrapper.find(Volume).forEach(component => {
+      wrapper.find(Volume).forEach((component) => {
         expect(component.props()).toHaveProperty('onClick', onVolumeClick);
       });
     });
@@ -80,7 +80,7 @@ describe('<VolumeList />', () => {
         volumes={[aVolume(), aVolume(), aVolume()]}
         searchQuery={searchQuery}
       />);
-      wrapper.find(Volume).forEach(component => {
+      wrapper.find(Volume).forEach((component) => {
         expect(component.props()).toHaveProperty('searchQuery', searchQuery);
       });
     });

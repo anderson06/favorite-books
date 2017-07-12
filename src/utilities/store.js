@@ -5,5 +5,5 @@ export default (namespace, data) => {
 
   const store = localStorage.getItem(namespace);
   return (store && JSON.parse(store)) || [];
-}
+};
 
