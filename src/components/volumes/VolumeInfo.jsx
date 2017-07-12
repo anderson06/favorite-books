@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { getVolume } from '../../services/books';
+import updateProtocol from '../../utilities/updateProtocol';
 import './VolumeInfo.scss';
 
 class VolumeInfo extends Component {
@@ -86,7 +87,7 @@ class VolumeInfo extends Component {
         {closeButton}
         <div className="">
           <div className="cover-container">
-            <img src={ volumeInfo.imageLinks.small } className="cover-image" />
+            <img src={ updateProtocol(volumeInfo.imageLinks.small) } className="cover-image" />
           </div>
           <div className="info-box-top">
             <h1 className="volume-title">{ volumeInfo.title }</h1>

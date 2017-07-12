@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import FavoritesButton from './FavoritesButton';
+import updateProtocol from '../../utilities/updateProtocol';
 import * as diacritics from 'diacritics';
 import './Volume.scss';
 
@@ -44,7 +45,7 @@ class Volume extends Component {
       </div>
     );
     if (this.props.thumbnail) {
-      image = <img src={this.props.thumbnail} alt="book cover" className="circle" />;
+      image = <img src={updateProtocol(this.props.thumbnail)} alt="book cover" className="circle" />;
     }
     return (
       <li
