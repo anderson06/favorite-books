@@ -39,7 +39,7 @@ class Volume extends Component {
         onClick={this.handleClick}
       >
         {image}
-        <span className="title truncate">
+        <span className="fb-volume-title title truncate">
           {highlight(this.props.searchQuery, this.props.title)}
         </span>
         <p className="fb-truncate fb-description">
