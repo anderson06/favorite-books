@@ -1,4 +1,4 @@
-import Favorites from '../../src/services/favorites';
+import Favorites from '../../src/models/favorites';
 import store from '../../src/utilities/store';
 
 describe('favorites', () => {

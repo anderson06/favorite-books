@@ -1,10 +1,10 @@
 import React from 'react';
 import { shallow, mount } from 'enzyme';
 import { VolumeList, Volume } from '../../../src/components/volumes';
-import Favorites from '../../../src/services/favorites';
+import Favorites from '../../../src/models/favorites';
 import { aVolume } from '../../builders/volume';
 
-jest.mock('../../../src/services/favorites');
+jest.mock('../../../src/models/favorites');
 
 describe('<VolumeList />', () => {
   beforeEach(() => {

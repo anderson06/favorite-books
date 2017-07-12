@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { arrayOf, shape } from 'prop-types';
 import Volume from './Volume';
-import Favorites from '../../services/favorites';
+import Favorites from '../../models/favorites';
 
 class VolumeList extends Component {
   constructor() {
