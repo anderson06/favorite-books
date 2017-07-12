@@ -78,10 +78,17 @@ class VolumeInfo extends Component {
         x
       </div>
     );
+
     if (!volumeInfo) {
       return <div className="fb-info">{closeButton}</div>;
     }
-    const authors = volumeInfo.authors.map((author, index) => <div key={index}>{author}</div>);
+
+    let authors = null;
+
+    if (volumeInfo.authors) {
+      authors = volumeInfo.authors.map((author, index) => <div key={index}>{author}</div>);
+    }
+
     const description = {__html: volumeInfo.description};
     return (
       <div className="fb-info" id="info">
