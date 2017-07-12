@@ -43,7 +43,7 @@ class VolumeInfo extends Component {
 
   renderLoading() {
     return (
-      <div className="col s12 m4 center">
+      <div className="col s12 m4 center fb-loading">
         <div className="preloader-wrapper active">
           <div className="spinner-layer spinner-red-only">
             <div className="circle-clipper left">
