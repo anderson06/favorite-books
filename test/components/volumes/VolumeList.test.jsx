@@ -72,4 +72,17 @@ describe('<VolumeList />', () => {
       });
     });
   });
+
+  describe('when searchQuery is passed', () => {
+    it('should pass it to all <Volume /> components', () => {
+      const searchQuery = 'a search query';
+      const wrapper = shallow(<VolumeList
+        volumes={[aVolume(), aVolume(), aVolume()]}
+        searchQuery={searchQuery}
+      />);
+      wrapper.find(Volume).forEach(component => {
+        expect(component.props()).toHaveProperty('searchQuery', searchQuery);
+      });
+    });
+  });
 });

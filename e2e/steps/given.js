@@ -10,4 +10,9 @@ module.exports = function given() {
     /^I'm on a search result page that has more than 10 results$/,
     () => FavoriteBooks.search('Game of Thrones'),
   );
+
+  this.Given(
+    /^I search for "([^"]*)?"$/,
+    (bookName) => FavoriteBooks.search(bookName),
+  );
 };

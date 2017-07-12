@@ -16,6 +16,7 @@ class App extends Component {
       totalPages: 0,
       volumes: [],
       searchQuery: '',
+      submitedSearchQuery: '',
     };
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleChange = this.handleChange.bind(this);
@@ -64,6 +65,7 @@ class App extends Component {
           page,
           totalPages: Math.floor(response.data.totalItems / 10),
           volumes: response.data.items.map(parseVolume),
+          submitedSearchQuery: searchQuery,
         });
       })
       .catch((error) => {
@@ -74,12 +76,12 @@ class App extends Component {
           page,
           totalPages: 0,
           volumes: [],
+          submitedSearchQuery: '',
         });
       });
   }
 
   renderSearch() {
-    const { volumes, page, totalPages } = this.state;
     return (
       <div>
         <div className="section">
@@ -91,11 +93,12 @@ class App extends Component {
 
         <div className="section">
           <SearchResults
-            currentPage={page}
-            totalPages={totalPages}
-            volumes={volumes}
+            volumes={this.state.volumes}
+            currentPage={this.state.page}
+            totalPages={this.state.totalPages}
             onVolumeClick={this.handleVolumeClick}
             onNextPageClick={this.handleNextPageClick}
+            searchQuery={this.state.submitedSearchQuery}
             onPreviousPageClick={this.handlePreviousPageClick}
           />
         </div>

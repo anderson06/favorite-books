@@ -19,17 +19,17 @@ class VolumeList extends Component {
   }
 
   render() {
-    const { volumes, onVolumeClick } = this.props;
-    if (volumes.length === 0) {
+    if (this.props.volumes.length === 0) {
       return null;
     }
-    const listVolumes = volumes.map(volume => (
+    const listVolumes = this.props.volumes.map(volume => (
       <Volume
         key={volume.id}
         {...volume}
         favorite={this.favorites.isFavorite(volume)}
         onFavoriteButtonClick={this.handleFavoriteButtonClick}
-        onClick={onVolumeClick}
+        onClick={this.props.onVolumeClick}
+        searchQuery={this.props.searchQuery}
       />
     ));
     return (

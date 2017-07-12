@@ -37,8 +37,16 @@ module.exports = function then() {
 
   this.When(
     /^I expect to see more info about the book$/,
-    () => {
-      FavoriteBooks.info.waitForVisible();
+    () => FavoriteBooks.info.waitForVisible(),
+  );
+
+  this.When(
+    /^I expect to see some highlights containing "([^"]*)?"$/,
+    (bookName) => {
+      const highlightElements = FavoriteBooks.searchResults.$$('.highlight');
+      const highlights = highlightElements.map(h => h.getText());
+      console.log(highlights);
+      expect(highlights).to.include(bookName);
     },
   );
 };

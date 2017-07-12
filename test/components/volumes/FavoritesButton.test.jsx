@@ -17,7 +17,10 @@ describe('<FavoritesButton />', () => {
     const volumeId = '1';
     const onClick = jest.fn();
     const wrapper = shallow(<FavoritesButton volumeId={volumeId} onClick={onClick} />);
-    wrapper.simulate('click');
+    wrapper.simulate('click', {
+      preventDefault: () => {},
+      stopPropagation: () => {},
+    });
     expect(onClick).toHaveBeenCalledTimes(1);
     expect(onClick).toHaveBeenCalledWith({ id: volumeId });
   });

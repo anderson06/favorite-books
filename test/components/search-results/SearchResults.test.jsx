@@ -52,5 +52,20 @@ describe('<SearchResults />', () => {
       expect(wrapper.find(VolumeList).props().onVolumeClick).toBe(onVolumeClick);
     });
   });
+
+  describe('when volumes and searQuery are passed', () => {
+    let wrapper;
+    let volumes;
+    let searchQuery = 'a search query';
+
+    beforeEach(() => {
+      volumes = [aVolume(), aVolume(), aVolume()];
+      wrapper = shallow(<SearchResults volumes={volumes} searchQuery={searchQuery} />);
+    });
+
+    it('should pass searchQuery to <VolumeList /> component', () => {
+      expect(wrapper.find(VolumeList).props().searchQuery).toBe(searchQuery);
+    });
+  });
 });
 

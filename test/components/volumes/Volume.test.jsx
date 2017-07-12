@@ -1,7 +1,7 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import { Volume, FavoritesButton } from '../../../src/components/volumes';
-import { aVolume } from '../../builders/volume';
+import { aVolume, aVolumeWith } from '../../builders/volume';
 
 describe('<Volume />', () => {
   it('renders a book placeholder image when no thumbnail is passed', () => {
@@ -51,6 +51,22 @@ describe('<Volume />', () => {
       wrapper.simulate('click', { preventDefault: () => {} });
       expect(onClick).toHaveBeenCalledTimes(1);
       expect(onClick).toHaveBeenCalledWith({ id: volume.id });
+    });
+  });
+
+  describe('when passes searchQuery', () => {
+    it('should create a highlight element containing searchQuery on title', () => {
+      const volume = aVolumeWith({ title: 'a gret volume title' });
+      const searchQuery = 'title';
+      const wrapper = shallow(<Volume {...volume} searchQuery={searchQuery} />);
+      expect(wrapper.find('.title .highlight').text()).toBe(searchQuery);
+    });
+
+    it('should create a highlight element containing searchQuery on description', () => {
+      const volume = aVolumeWith({ description: 'a gret volume description' });
+      const searchQuery = 'description';
+      const wrapper = shallow(<Volume {...volume} searchQuery={searchQuery} />);
+      expect(wrapper.find('.fb-description .highlight').text()).toBe(searchQuery);
     });
   });
 });

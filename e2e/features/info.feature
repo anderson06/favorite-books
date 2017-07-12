@@ -1,4 +1,3 @@
-@wip
 Feature: Book Info
   As a user
   I want to click on a book and see more info
