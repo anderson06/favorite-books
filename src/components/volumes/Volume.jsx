@@ -45,7 +45,7 @@ class Volume extends Component {
       </div>
     );
     if (this.props.thumbnail) {
-      image = <img src={updateProtocol(this.props.thumbnail)} alt="book cover" className="circle" />;
+      image = <img src={updateProtocol(this.props.thumbnail)} alt="book cover" className="fb-volume-cover" />;
     }
     return (
       <li
