@@ -82,6 +82,7 @@ class VolumeInfo extends Component {
       return <div className="fb-info">{closeButton}</div>;
     }
     const authors = volumeInfo.authors.map((author, index) => <div key={index}>{author}</div>);
+    const description = {__html: volumeInfo.description};
     return (
       <div className="fb-info" id="info">
         {closeButton}
@@ -96,7 +97,10 @@ class VolumeInfo extends Component {
             <div>{ volumeInfo.publishedDate }</div>
           </div>
         </div>
-        <div className="flow-text description">{ volumeInfo.description }</div>
+        <div
+          className="flow-text description"
+          dangerouslySetInnerHTML={description}
+        />
       </div>
     );
   }
