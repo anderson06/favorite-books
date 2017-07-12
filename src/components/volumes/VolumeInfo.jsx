@@ -75,11 +75,13 @@ class VolumeInfo extends Component {
         <div className="row">
           <div className="col s12 m4">
             <div className="cover-container">
-              <img
-                src={updateProtocol(volumeInfo.imageLinks.small)}
-                className="cover-image"
-                alt="book cover"
-              />
+              {volumeInfo.imageLinks && volumeInfo.imageLinks.small &&
+                <img
+                  src={updateProtocol(volumeInfo.imageLinks.small)}
+                  className="cover-image"
+                  alt="book cover"
+                />
+              }
             </div>
           </div>
           <div className="col s12 m8">
