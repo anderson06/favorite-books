@@ -9,7 +9,7 @@ exports.config = {
     browserName: 'phantomjs',
   }],
   sync: true,
-  logLevel: 'error',
+  logLevel: 'info',
   coloredLogs: true,
   screenshotPath: './errorShots/',
   baseUrl: 'http://localhost:8080',
@@ -51,7 +51,9 @@ exports.config = {
   },
   afterScenario: function afterScenario(scenario) {
     // Clear browser localStorage
+    console.log('before clean localStorage');
     browser.execute('window.localStorage.clear();');
+    console.log('after clean localStorage');
   },
 };
 

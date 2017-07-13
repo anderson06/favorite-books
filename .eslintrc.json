@@ -2,13 +2,14 @@
   "env": {
     "browser": true,
     "node": true,
-    "jest": true,
-    "webdriverio/wdio": true
+    "jest": true
+  },
+  "globals": {
+    "$": true,
+    "$$": true,
+    "browser": true
   },
   "extends": "airbnb",
-  "plugins": [
-    "webdriverio"
-  ],
   "rules": {
     "no-underscore-dangle": "off",
     "jsx-a11y/no-noninteractive-element-interactions": "off",
