@@ -51,9 +51,7 @@ exports.config = {
   },
   afterScenario: function afterScenario(scenario) {
     // Clear browser localStorage
-    console.log('before clean localStorage');
     browser.execute('window.localStorage.clear();');
-    console.log('after clean localStorage');
   },
 };
 
